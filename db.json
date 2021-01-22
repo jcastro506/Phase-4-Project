@@ -1,0 +1,22 @@
+{
+    "trips": [
+      {
+        "id": 1,
+        "date": "2019-12-01",
+        "description": "Trip to Hawaii!",
+        "image": "https://specials-images.forbesimg.com/imageserve/5e086a2f25ab5d0007cf74ec/960x0.jpg?cropX1=1&cropX2=1867&cropY1=0&cropY2=1244"
+      },
+      {
+        "id": 2,
+        "date": "2019-1-05",
+        "description": "Had a great time in London!",
+        "image": "https://imageproxy.themaven.net//https%3A%2F%2Fwww.history.com%2F.image%2FMTYyNDg1MjE3MTI1Mjc5Mzk4%2Ftopic-london-gettyimages-760251843-promo.jpg"
+      },
+      {
+        "id": 3,
+        "date": "2019-3-24",
+        "description": "I miss Tokyo!",
+        "image": "https://imageproxy.themaven.net//https%3A%2F%2Fwww.history.com%2F.image%2FMTYyNDg1MjE3MTI1Mjc5Mzk4%2Ftopic-london-gettyimages-760251843-promo.jpg"
+      }
+    ]
+}
