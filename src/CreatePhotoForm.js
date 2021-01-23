@@ -7,21 +7,36 @@ function CreatePhotoFrom ({handleNewPhoto}){
     const [date, setDate] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
-    const [image, setImage] = useState("")
+    const [image_url, setImage] = useState("")
 
     function handleSubmit(e){
         e.preventDefault()
 
-        const newPhoto = {
+        const photoObj = {
             date,
             description,
             location,
-            image 
+            image_url
         }
 
-        handleNewPhoto(newPhoto)
+        console.log(photoObj)
+
+        fetch("http://localhost:3000/photos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(photoObj),
+        })
+        .then(response => response.json())
+        .then(photoObj => handleNewPhoto(photoObj))
+
+        
+        setDate("")
+        setDescription("")
+        setLocation("")
+        setImage("")
     }
-    
     
     return (
         <div className="">
@@ -30,7 +45,7 @@ function CreatePhotoFrom ({handleNewPhoto}){
             <input type="date" name="date" value={date} onChange={e => setDate(e.target.value)}/>
             <input type="text" name="description" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
             <input type="text" name="location" placeholder="City, Country" value={location} onChange={e => setLocation(e.target.value)}/>
-            <input type="text" name="image" placeholder="Paste your image URl" value={image} onChange={e => setImage(e.target.value)}/>
+            <input type="text" name="image" placeholder="Paste your image URl" value={image_url} onChange={e => setImage(e.target.value)}/>
         </div>
         {/* <button className="ui button" type="submit">
           Add Photo!

@@ -21,16 +21,15 @@ function App() {
 
 
   function handleNewPhoto(photoObj){
+    console.log("New Obj", photoObj)
     const newTrips = [...allTrips, photoObj]
     setTrips(newTrips)
-    console.log(photoObj)
+    // console.log(photoObj)
   }
-
 
   function handleMorePhotos() {
     setIndex((photoIndex) => (photoIndex + 4) % allTrips.length)
   }
-
 
   useEffect(() => {
     fetch(`http://localhost:3000/photos`)
@@ -38,9 +37,8 @@ function App() {
     .then((photosArr) => setTrips(photosArr))
   }, [])
 
-
-  const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search)).slice(photoIndex, photoIndex + 8)
-
+  // const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
+  const displayedPhotos = allTrips.filter((trip) => trip.location.includes(search))
 
   return (
     <div className="App">

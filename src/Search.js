@@ -10,6 +10,7 @@ function Search ({search, setSearch}){
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
+              console.log("Updated Search?", search)
             }}
           />
         </div>
