@@ -8,18 +8,20 @@ function CreatePhotoFrom ({handleNewPhoto}){
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
     const [image_url, setImage] = useState("")
+    const [likes, setLikes] = useState(0)
 
     function handleSubmit(e){
         e.preventDefault()
 
         const photoObj = {
-            date,
-            description,
+            image_url,
             location,
-            image_url
+            description,
+            date, 
+            likes
         }
 
-        console.log(photoObj)
+        // console.log(photoObj)
 
         fetch("http://localhost:3000/photos", {
             method: "POST",
@@ -31,7 +33,6 @@ function CreatePhotoFrom ({handleNewPhoto}){
         .then(response => response.json())
         .then(photoObj => handleNewPhoto(photoObj))
 
-        
         setDate("")
         setDescription("")
         setLocation("")
@@ -55,6 +56,5 @@ function CreatePhotoFrom ({handleNewPhoto}){
     </div>
     )
 }
-
 
 export default CreatePhotoFrom

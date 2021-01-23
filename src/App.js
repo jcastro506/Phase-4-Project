@@ -10,8 +10,6 @@ import {
   Link
 } from "react-router-dom";
 
-
-
 function App() {
 
   const [allTrips, setTrips] = useState([])
@@ -19,7 +17,7 @@ function App() {
   const [page, setPage] = useState("/")
   const [photoIndex, setIndex] = useState(0)
 
-
+  
   function handleNewPhoto(photoObj){
     console.log("New Obj", photoObj)
     const newTrips = [...allTrips, photoObj]
@@ -37,13 +35,20 @@ function App() {
     .then((photosArr) => setTrips(photosArr))
   }, [])
 
-  // const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
-  const displayedPhotos = allTrips.filter((trip) => trip.location.includes(search))
+
+  function deletePicture(id){
+    console.log("Delete Picture", id)
+    const newArray = allTrips.filter(trip => trip.id !== id)
+    setTrips(newArray)
+  }
+
+  const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
+  // const displayedPhotos = allTrips.filter((trip) => trip.location.includes(search))
 
   return (
     <div className="App">
       <NavBar search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
-      <PhotoList allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos} /> 
+      <PhotoList removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos} /> 
     </div>
   );
 }
