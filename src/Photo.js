@@ -1,7 +1,7 @@
 import React, {useState} from 'react' 
 import Image from 'react-bootstrap/Image'
 
-function Photo ({trip, removePic}){
+function Photo ({patchLikes, trip, removePic}){
 
     let {
         id,
@@ -15,11 +15,9 @@ function Photo ({trip, removePic}){
 
     const [totalLikes, setTotalLikes] = useState(likes)
 
-    function addLike(){
+    function addLike(id){
         setTotalLikes(totalLikes + 1)
-        // const newTotalLikes = (likes + 1)
-        // setTotalLikes(totalLikes + 1)
-        // console.log("likes", totalLikes, likes)
+        patchLikes(totalLikes, id)
     }
 
     function deletePic(){
@@ -44,8 +42,7 @@ function Photo ({trip, removePic}){
             <p>Date: {date}</p>
             <button onClick={addLike}>Likes: {totalLikes}</button>
             <button onClick={deletePic}>Delete Pic</button>
-            
-           
+              
         </div>
         
     )

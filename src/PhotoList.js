@@ -2,9 +2,9 @@ import React from 'react'
 import Photo from "./Photo.js"
 import Button from 'react-bootstrap/Button';
 
-function PhotoList ({allTrips, handleMorePhotos, removePic}){
+function PhotoList ({patchLikes, allTrips, handleMorePhotos, removePic}){
     const eachTrip = allTrips.map(function(trip){
-        return <Photo key={trip.id} removePic={removePic} trip={trip} />
+        return <Photo patchLikes={patchLikes} key={trip.id} removePic={removePic} trip={trip} />
     })
 
     return (
