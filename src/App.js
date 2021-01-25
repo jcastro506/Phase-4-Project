@@ -75,6 +75,26 @@ function App() {
   const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
   // const displayedPhotos = allTrips.filter((trip) => trip.location.includes(search))
 
+  // Very unsure, probably broken:
+  // function editLikes(totalLikes, id){
+  //   fetch(`http://localhost:3000/photos/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Accepts": "appilcation/json"
+  //     },
+  //     body: JSON.stringify(totalLikes)
+  //   })
+  //     .then(r => r.json())
+  //     .then(newLike => {
+  //       let newArray = [...allTrips]
+  //       let newObj = newArray.find(photo => photo.id === newLike.id)
+  //       let idx = newArray.indexOf(newObj)
+  //       newArray[idx] = newLike;
+  //       setTrips(newArray)
+  //     })
+  // }
+
   return (
     <div className="App">
       <NavBar search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
