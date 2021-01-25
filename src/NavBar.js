@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 
 function NavBar({search, setSearch, handleNewPhoto}){
 
-
     return (
         <div>
         <h2> Working Title </h2>

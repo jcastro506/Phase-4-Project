@@ -27,11 +27,13 @@ function CreatePhotoFrom ({handleNewPhoto}){
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "application/json"
             },
             body: JSON.stringify(photoObj),
         })
         .then(response => response.json())
         .then(photoObj => handleNewPhoto(photoObj))
+        .catch(console.log)
 
         setDate("")
         setDescription("")

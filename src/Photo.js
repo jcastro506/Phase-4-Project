@@ -1,9 +1,9 @@
 import React, {useState} from 'react' 
 import Image from 'react-bootstrap/Image'
 
-function Photo ({trip, removePic}){
+function Photo ({trip, removePic, patchLikes}){
 
-    let {
+    const {
         id,
         date,
         description,
@@ -14,14 +14,7 @@ function Photo ({trip, removePic}){
     } = trip
 
     const [totalLikes, setTotalLikes] = useState(likes)
-
-    function addLike(){
-        setTotalLikes(totalLikes + 1)
-        // const newTotalLikes = (likes + 1)
-        // setTotalLikes(totalLikes + 1)
-        // console.log("likes", totalLikes, likes)
-    }
-
+ 
     function deletePic(){
         console.log("Delete Clicked")
         fetch(`http://localhost:3000/photos/${id}`, {
@@ -33,6 +26,15 @@ function Photo ({trip, removePic}){
         } )
     }
 
+    function addLike(){
+        setTotalLikes(totalLikes + 1)
+
+        const newObj = {
+            likes: (totalLikes+1)
+        }
+        patchLikes(likes, id)
+    }
+
     return (
         <div>
             {/* <Image src={image} fluid /> */}
@@ -42,12 +44,9 @@ function Photo ({trip, removePic}){
             <p>Description: {description}</p>
             <p>Location: {location}</p> 
             <p>Date: {date}</p>
-            <button onClick={addLike}>Likes: {totalLikes}</button>
-            <button onClick={deletePic}>Delete Pic</button>
-            
-           
-        </div>
-        
+            <button onClick={addLike}>Likes: {likes}</button>
+            <button onClick={deletePic}>Delete Pic</button>          
+        </div>       
     )
 }
 
