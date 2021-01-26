@@ -1,7 +1,7 @@
 import React, {useState} from 'react' 
 import Button from 'react-bootstrap/Button';
 
-function CreatePhotoFrom ({handleNewPhoto, destinations}){
+function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
     
     const [date, setDate] = useState("")
     const [description, setDescription] = useState("")
@@ -13,15 +13,16 @@ function CreatePhotoFrom ({handleNewPhoto, destinations}){
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(e.target.value)
+        console.log(selected)
  
         const photoObj = {
             image_url,
             location,
             description,
             date, 
-            likes
-            // destination: selected
+            likes,
+            user,
+            destination: selected
         }
 
         fetch("http://localhost:3000/photos", {
@@ -45,24 +46,23 @@ function CreatePhotoFrom ({handleNewPhoto, destinations}){
     return (
         <div className="">
          <form className="" onSubmit={handleSubmit}>
-        <div className="">
             <input type="date" name="date" value={date} onChange={e => setDate(e.target.value)}/>
             <input type="text" name="description" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
             <input type="text" name="location" placeholder="City, Country" value={location} onChange={e => setLocation(e.target.value)}/>
             <input type="text" name="image" placeholder="Paste your image URl" value={image_url} onChange={e => setImage(e.target.value)}/>
             <label>Where were ya?
-                <select>
+                <select
+                onChange={e => setSelected(e.target.value)}>
                     {destinations.map((dest) => (
-                    <option key={dest.id} value={selected} onChange={e => setSelected(e.target.value)}>{dest.city}</option>
+                    <option key={dest.id} value={selected}>{dest.city}</option>
                     ))}
-                </select>
-                    
-            </label>
+                </select>              
+        </label>
         <Button className="ui button" type="submit" variant="primary">Add Photo!</Button>{' '}
-        </div>
       </form>
     </div>
     )
 }
+
 
 export default CreatePhotoFrom

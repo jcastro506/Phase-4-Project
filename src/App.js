@@ -2,13 +2,8 @@ import './App.css';
 import React, {useEffect, useState} from "react";
 import PhotoList from "./PhotoList.js"
 import NavBar from "./NavBar.js"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+
 
 function App() {
 
@@ -80,43 +75,25 @@ function App() {
   })
 }
 
-      // .then(newLike => {
-      // .then(r => r.json())
-      // .then(newLike => {
-      //   let newArray = [...allTrips]
-      //   let newObj = newArray.find(photo => photo.id === newLike.id)
-      //   let idx = newArray.indexOf(newObj)
-      //   newArray[idx] = newLike;
-      //   setTrips(newArray)
-      // })
-
-  const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
-  // const displayedPhotos = allTrips.filter((trip) => trip.location.includes(search))
-
-  // Very unsure, probably broken:
-  // function editLikes(totalLikes, id){
-  //   fetch(`http://localhost:3000/photos/${id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accepts": "appilcation/json"
-  //     },
-  //     body: JSON.stringify(totalLikes)
-  //   })
-  //     .then(r => r.json())
-  //     .then(newLike => {
-  //       let newArray = [...allTrips]
-  //       let newObj = newArray.find(photo => photo.id === newLike.id)
-  //       let idx = newArray.indexOf(newObj)
-  //       newArray[idx] = newLike;
-  //       setTrips(newArray)
-  //     })
-  // }
+  const displayedPhotos = allTrips.filter((trip) => 
+    trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
+  
 
   return (
     <div className="App">
       <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
-      <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos} /> 
+      {/* <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos} />  */}
+      <Switch>
+        <Route path="/photo/1">
+          
+        </Route>
+        <Route path="/">
+          <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos}/>
+        </Route>
+        <Route path="*">
+          <h1>404 not found</h1>
+        </Route>
+      </Switch>
     </div>
   );
 }

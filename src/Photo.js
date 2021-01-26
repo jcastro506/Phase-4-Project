@@ -1,5 +1,7 @@
 import React, {useState} from 'react' 
-import Image from 'react-bootstrap/Image'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+
 
 function Photo ({patchLikes, trip, removePic}){
 
@@ -36,19 +38,31 @@ function Photo ({patchLikes, trip, removePic}){
     }
 
     return (
-        <div>
-            {/* <Image src={image} fluid /> */}
+        <div className="cards">
+            {/* <Image src={image} fluid />
             {/* <Image src={image} rounded /> */}
-            <img src={image_url} alt={description}></img>
+            {/* <Image src={image_url} rounded alt={description} fluid/> */}
             {/* <p>Creator: {user}</p> */}
-            <p>Description: {description}</p>
-            <p>Location: {location}</p> 
-            <p>Date: {date}</p>
-            <button onClick={addLike}>Likes: {totalLikes}</button>
-            <button onClick={deletePic}>Delete Pic</button>
+            {/* <p>Description: {description}</p> */}
+            {/* <p>Location: {location}</p>  */}
+            {/* <p>Date: {date}</p> */}
+            {/* <button onClick={addLike}>Likes: {totalLikes}</button> */}
+            {/* <button onClick={deletePic}>Delete Pic</button> */} 
+        
+            <Card className="card" border="dark" style={{ width: '18rem'}}>
+                <Card.Img variant="top" src={image_url} />
+                <Card.Body>
+                    <Card.Title>{location}</Card.Title>
+                    <Card.Text>
+                    {description}
+                    </Card.Text>
+                    <Button className="button" variant="primary" onClick={addLike}>Likes: {totalLikes}</Button>
+                    <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button>
+                </Card.Body>
+            </Card>
+     
               
         </div>
-        
     )
 }
 
