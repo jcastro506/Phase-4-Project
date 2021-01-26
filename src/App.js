@@ -16,7 +16,8 @@ function App() {
   const [search, setSearch] = useState("")
   const [page, setPage] = useState("/")
   const [photoIndex, setIndex] = useState(0)
-
+  const [destinations, setDestinations] = useState([])
+  const [user, setCurrentUser] = useState(null)
 
   function handleNewPhoto(photoObj){
     console.log("New Obj", photoObj)
@@ -34,6 +35,24 @@ function App() {
     .then((r) => r.json())
     .then((photosArr) => setTrips(photosArr))
   }, [])
+
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/destinations`)
+    .then((r) => r.json())
+    .then((destArr) => setDestinations(destArr))
+  }, [])
+
+  useEffect(() => {
+    // fake auth
+    fetch("http://localhost:3000/users/1")
+      .then((r) => r.json())
+      .then((user) => {
+        // save the user into state
+      setCurrentUser(user)
+      console.log(user)
+      })
+    }, [])
 
   function deletePicture(id){
     console.log("Delete Picture", id)
@@ -58,8 +77,8 @@ function App() {
         let idx = newArray.indexOf(newObj)
         newArray[idx] = data;
         setTrips(newArray)
-})
-
+  })
+}
 
       // .then(newLike => {
       // .then(r => r.json())
@@ -70,7 +89,6 @@ function App() {
       //   newArray[idx] = newLike;
       //   setTrips(newArray)
       // })
-  }
 
   const displayedPhotos = allTrips.filter((trip) => trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
   // const displayedPhotos = allTrips.filter((trip) => trip.location.includes(search))
@@ -97,7 +115,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
+      <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
       <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos} /> 
     </div>
   );
