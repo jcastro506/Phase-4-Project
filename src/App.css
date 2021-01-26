@@ -39,19 +39,29 @@
   }
 }
 
+.button {
+  margin: 3px;
+}
+
 .cards {
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: center;
-  padding: 10
+  padding: 10px;
+  margin: 10px
 }
 
 .card {
 background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
+  padding: 15px;
+  font-size: 20px;
   text-align: center;
+}
+
+.pic {
+  height: 200px;
+  width: 150px;
 }
 
 body {

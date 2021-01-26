@@ -50,7 +50,7 @@ function Photo ({patchLikes, trip, removePic}){
             {/* <button onClick={deletePic}>Delete Pic</button> */} 
         
             <Card className="card" border="dark" style={{ width: '18rem'}}>
-                <Card.Img variant="top" src={image_url} />
+                <Card.Img className="pic" variant="top" src={image_url} />
                 <Card.Body>
                     <Card.Title>{location}</Card.Title>
                     <Card.Text>
