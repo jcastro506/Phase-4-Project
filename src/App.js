@@ -2,7 +2,8 @@ import './App.css';
 import React, {useEffect, useState} from "react";
 import PhotoList from "./PhotoList.js"
 import NavBar from "./NavBar.js"
-import { Switch, Route, Redirect } from "react-router-dom";
+import User from "./User.js"
+import { Switch, Route } from "react-router-dom";
 
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   const [photoIndex, setIndex] = useState(0)
   const [destinations, setDestinations] = useState([])
   const [user, setCurrentUser] = useState(null)
+  const [userPhotos, setUserPhotos] = useState([])
+
 
   function handleNewPhoto(photoObj){
     console.log("New Obj", photoObj)
@@ -45,7 +48,8 @@ function App() {
       .then((user) => {
         // save the user into state
       setCurrentUser(user)
-      console.log(user)
+      setUserPhotos(user.getPhotos)
+      console.log(user.getPhotos)
       })
     }, [])
 
@@ -82,13 +86,12 @@ function App() {
   return (
     <div className="App">
       <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
-      {/* <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos} />  */}
       <Switch>
-        <Route path="/photo/1">
-          
-        </Route>
         <Route path="/">
           <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos}/>
+        </Route>
+        <Route exact path="/users/1">
+            <User photos={userPhotos}/>
         </Route>
         <Route path="*">
           <h1>404 not found</h1>

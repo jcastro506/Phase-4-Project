@@ -9,6 +9,44 @@
   pointer-events: none;
 }
 
+.email {
+  width: 75%;
+  border: 50px;
+  margin-left: 4em;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.password {
+  width: 75%;
+  border: 50px;
+  margin-left: 4em;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.logBtn {
+  margin-right: 1em;
+}
+
+.login {
+  /* background: #fff; */
+    padding: 10px 12px 10px 12px;
+    border: 1px solid lightgrey;
+    background-color: #bdd2ff;
+    text-align: center;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    width: 40%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -52,11 +90,15 @@
 }
 
 .card {
-background-color: rgba(255, 255, 255, 0.8);
+  display: table-cell;
+  background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 15px;
   font-size: 20px;
-  text-align: center;
+  /* text-align: center;
+  justify-content: center;
+  height: calc(100% - 15px);
+  margin-bottom: 15px; */
 }
 
 .pic {

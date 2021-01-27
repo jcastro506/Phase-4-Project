@@ -39,16 +39,6 @@ function Photo ({patchLikes, trip, removePic}){
 
     return (
         <div className="cards">
-            {/* <Image src={image} fluid />
-            {/* <Image src={image} rounded /> */}
-            {/* <Image src={image_url} rounded alt={description} fluid/> */}
-            {/* <p>Creator: {user}</p> */}
-            {/* <p>Description: {description}</p> */}
-            {/* <p>Location: {location}</p>  */}
-            {/* <p>Date: {date}</p> */}
-            {/* <button onClick={addLike}>Likes: {totalLikes}</button> */}
-            {/* <button onClick={deletePic}>Delete Pic</button> */} 
-        
             <Card className="card" border="dark" style={{ width: '18rem'}}>
                 <Card.Img className="pic" variant="top" src={image_url} />
                 <Card.Body>
@@ -59,9 +49,7 @@ function Photo ({patchLikes, trip, removePic}){
                     <Button className="button" variant="primary" onClick={addLike}>Likes: {totalLikes}</Button>
                     <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button>
                 </Card.Body>
-            </Card>
-     
-              
+            </Card>     
         </div>
     )
 }

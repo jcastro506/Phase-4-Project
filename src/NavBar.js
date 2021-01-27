@@ -10,6 +10,7 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
     const [loggedIn, setLoggedIn] = useState(false)
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
+    const [login, setLogin] = useState(false)
 
 
     function toggleMessage() {
@@ -28,13 +29,15 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
         <div>
         
         <h1> Working Title </h1>
+        <div className="login">
         {loggedIn ? (
               <h1>Welcome, {user.name}</h1>
             ) : (
               <h3>Please Login or Sign Up</h3>
             )}
-            <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
+            
+            <Form className="login-form" onSubmit={handleSubmit}>
+            <Form.Group className="email" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="email" placeholder="Enter Email" value={name} onChange={e => setName(e.target.value)} />
                 <Form.Text className="text-muted">
@@ -42,12 +45,18 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
                 </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group className="password" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={toggleMessage}>{loggedIn ? "Log Out" : "Log In"}</Button>
+            <Button className="logBtn" variant="primary" type="submit" onClick={toggleMessage}>{loggedIn ? "Log Out" : "Log In"}</Button>
         </Form>
+        {loggedIn ? (
+                <Link to="/users/1">Your Projects</Link>
+            ) : null
+            }
+        </div>
+
         <Search search={search} setSearch={setSearch}/>
         <CreatePhotoForm handleNewPhoto={handleNewPhoto} destinations={destinations} user={user}/>
 
