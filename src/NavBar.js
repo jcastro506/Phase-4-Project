@@ -5,16 +5,28 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
 
+
 function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
 
     const [loggedIn, setLoggedIn] = useState(false)
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [login, setLogin] = useState(false)
+    const [searchBtn, setSearchBtn] = useState(false)
+    const [createBtn, setCreateBtn] = useState(false)
 
 
     function toggleMessage() {
         setLoggedIn(!loggedIn)
+    }
+
+
+    function handleClick(){
+        setSearchBtn(!searchBtn)
+    }
+
+    function handleAdd(){
+        setCreateBtn(!createBtn)
     }
     
     function handleSubmit(e){
@@ -27,14 +39,13 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
 
     return (
         <div>
-        
-        <h1> Working Title </h1>
         <div className="login">
+        <h1 className="title"> Pictopia </h1>
         {loggedIn ? (
-              <h1>Welcome, {user.name}</h1>
+            <h3>Welcome, {user.name}</h3>
             ) : (
-              <h3>Please Login or Sign Up</h3>
-            )}
+                <h3>Please Login</h3>
+                )}
             
             <Form className="login-form" onSubmit={handleSubmit}>
             <Form.Group className="email" controlId="formBasicEmail">
@@ -51,14 +62,23 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
             </Form.Group>
             <Button className="logBtn" variant="primary" type="submit" onClick={toggleMessage}>{loggedIn ? "Log Out" : "Log In"}</Button>
         </Form>
+        </div>
+        <div className="buttons">
+        <Button className="searchBtn" onClick={handleClick}>Wanna Search?</Button>
+        <Button className="add-button" onClick={handleAdd}>Let's Add A Photo!</Button>
+
         {loggedIn ? (
-                <Link to="/users/1">Your Projects</Link>
+                <Link className="your-projects" to="/users/1">Your Projects</Link>
             ) : null
             }
+        {searchBtn ? (
+            <Search search={search} setSearch={setSearch}/>
+        ) : null
+        }
         </div>
-
-        <Search search={search} setSearch={setSearch}/>
+        {createBtn ? (
         <CreatePhotoForm handleNewPhoto={handleNewPhoto} destinations={destinations} user={user}/>
+        ) : null }
 
         
         

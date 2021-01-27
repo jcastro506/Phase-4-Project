@@ -47,7 +47,7 @@ function Photo ({patchLikes, trip, removePic}){
                     {description}
                     </Card.Text>
                     <Button className="button" variant="primary" onClick={addLike}>Likes: {totalLikes}</Button>
-                    <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button>
+                    {/* <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button> */}
                 </Card.Body>
             </Card>     
         </div>

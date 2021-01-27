@@ -1,41 +1,40 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
+function UserPhotos({photo, removePic}){
+    // const [
+    //     date,
+    //     description,
+    //     image_url,
+    //     likes,
+    //     location
+    // ] = photo
 
-function UserPhotos({photo}){
-
-    const [
-        date,
-        description,
-        image_url,
-        likes,
-        location
-    ] = photo
+    function deletePic(){
+        console.log("Delete Clicked")
+        fetch(`http://localhost:3000/photos/${photo.id}`, {
+            method: "DELETE"
+        })
+        .then(r => r.json())
+        .then(() => {
+            removePic(photo.id)
+        } )
+    }
 
     return (
         <div className="cards">
-        {/* <Image src={image} fluid />
-        {/* <Image src={image} rounded /> */}
-        {/* <Image src={image_url} rounded alt={description} fluid/> */}
-        {/* <p>Creator: {user}</p> */}
-        {/* <p>Description: {description}</p> */}
-        {/* <p>Location: {location}</p>  */}
-        {/* <p>Date: {date}</p> */}
-        {/* <button onClick={addLike}>Likes: {totalLikes}</button> */}
-        {/* <button onClick={deletePic}>Delete Pic</button> */} 
-    
         <Card className="card" border="dark" style={{ width: '18rem'}}>
-            <Card.Img className="pic" variant="top" src={image_url} />
+            <Card.Img className="pic" variant="top" src={photo.image_url} />
             <Card.Body>
-                <Card.Title>{location}</Card.Title>
+                <Card.Title>{photo.location}</Card.Title>
                 <Card.Text>
-                {description}
+                {photo.description}
                 </Card.Text>
-                {/* <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button> */}
+                <Button className="button" variant="primary">Likes: {photo.likes}</Button>
+                <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button>
             </Card.Body>
-        </Card>
- 
-          
+        </Card> 
     </div>
     )
 

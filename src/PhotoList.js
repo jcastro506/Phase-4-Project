@@ -10,7 +10,7 @@ function PhotoList ({patchLikes, allTrips, handleMorePhotos, removePic}){
 
     return (
         <div>
-            <h1>All Photos!</h1>
+            <h1>What Others Are Posting!</h1>
             <Button className="button" onClick={handleMorePhotos} className="ui button" type="submit" variant="primary">Want More Photos?</Button>{' '}
             {eachTrip}
         </div>

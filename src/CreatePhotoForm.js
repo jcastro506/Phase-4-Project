@@ -58,7 +58,7 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
                     ))}
                 </select>              
         </label>
-        <Button className="ui button" type="submit" variant="primary">Add Photo!</Button>{' '}
+        <Button className="ui-button" type="submit" variant="primary">Add Photo!</Button>{' '}
       </form>
     </div>
     )

@@ -4,7 +4,7 @@ import PhotoList from "./PhotoList.js"
 import NavBar from "./NavBar.js"
 import User from "./User.js"
 import { Switch, Route } from "react-router-dom";
-
+import CreatePhotoFrom from './CreatePhotoForm';
 
 function App() {
 
@@ -55,8 +55,8 @@ function App() {
 
   function deletePicture(id){
     console.log("Delete Picture", id)
-    const newArray = allTrips.filter(trip => trip.id !== id)
-    setTrips(newArray)
+    const newArray = userPhotos.filter(pic => pic.id !== id)
+    setUserPhotos(newArray)
   }
 
   function editLikes(likes, id){
@@ -81,18 +81,24 @@ function App() {
 
   const displayedPhotos = allTrips.filter((trip) => 
     trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
-  
+
+   
 
   return (
     <div className="App">
-      <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
+      {/* <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/> */}
+      {/* <User photos={userPhotos}/> */}
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
+          <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/>
           <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos}/>
         </Route>
         <Route exact path="/users/1">
-            <User photos={userPhotos}/>
+            <User photos={userPhotos} removePic={deletePicture}/>
         </Route>
+        {/* <Route exact path="/add">
+          <CreatePhotoFrom />
+        </Route> */}
         <Route path="*">
           <h1>404 not found</h1>
         </Route>
