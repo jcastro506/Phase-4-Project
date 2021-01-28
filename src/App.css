@@ -96,6 +96,10 @@
   margin-left: 3em;
 }
 
+.searchBox{
+  position:relative; left:-10px; bottom:-20px;
+}
+
 .buttons {
   margin: 10px;
   padding: 10px;

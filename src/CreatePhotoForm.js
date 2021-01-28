@@ -10,10 +10,13 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
     const [likes, setLikes] = useState(0)
     const [selected, setSelected] = useState("")
 
+    function handleChange(e){
+        setSelected(e.target.value)
+    }
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(selected)
+        console.log("selected", selected)
  
         const photoObj = {
             image_url,
@@ -21,9 +24,11 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
             description,
             date, 
             likes,
-            user,
-            destination: selected
+            user_id: 17,
+            destination_id: parseInt(selected)
         }
+
+        console.log("photoObj", photoObj)
 
         fetch("http://localhost:3000/photos", {
             method: "POST",
@@ -31,11 +36,10 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify(photoObj),
+            body: JSON.stringify({photo: photoObj}),
         })
         .then(response => response.json())
         .then(photoObj => handleNewPhoto(photoObj))
-        .catch(console.log)
 
         setDate("")
         setDescription("")
@@ -52,9 +56,9 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
             <input type="text" name="image" placeholder="Paste your image URl" value={image_url} onChange={e => setImage(e.target.value)}/>
             <label>Where were ya?
                 <select
-                onChange={e => setSelected(e.target.value)}>
+                onChange={handleChange} value={selected}>
                     {destinations.map((dest) => (
-                    <option key={dest.id} value={selected}>{dest.city}</option>
+                    <option key={dest.id} value={dest.id}>{dest.city}</option>
                     ))}
                 </select>              
         </label>

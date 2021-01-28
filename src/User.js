@@ -10,7 +10,7 @@ function User ({photos, removePic}){
     
     return(
      <div>
-        <Link to="/">Home</Link>
+        <Link to="/">Log Out</Link>
         <h2>My Photos!</h2>
         {eachPhoto}
     </div>

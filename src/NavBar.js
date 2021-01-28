@@ -17,9 +17,13 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
 
 
     function toggleMessage() {
+        if(name !== "lana@internet.net"){
+            return alert('Your Email does not exist')
+        }
+        else{
         setLoggedIn(!loggedIn)
+        };
     }
-
 
     function handleClick(){
         setSearchBtn(!searchBtn)
@@ -31,10 +35,15 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
     
     function handleSubmit(e){
         e.preventDefault()
-        // {name = "Isle Mills" ? "Welcome" :
-        // alert("You are not authorized to view this page!")}
-        setName("")
-        setPassword("")
+        if(name !== "lana@internet.net" ){
+           return alert('Your Email does not exist')
+        }
+        else{
+            setName("")
+            setPassword("")
+        }
+        // setName("")
+        // setPassword("")
     }
 
     return (

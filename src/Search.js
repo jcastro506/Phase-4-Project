@@ -3,7 +3,7 @@ import React from 'react'
 function Search ({search, setSearch}){
 
     return (
-        <div className="">
+        <div className="searchBox">
           <input
             type="text"
             placeholder={"Search For Your Favorite City!"}

@@ -5,6 +5,9 @@ import NavBar from "./NavBar.js"
 import User from "./User.js"
 import { Switch, Route } from "react-router-dom";
 import CreatePhotoFrom from './CreatePhotoForm';
+import Photo from './Photo.js'
+
+
 
 function App() {
 
@@ -17,12 +20,6 @@ function App() {
   const [userPhotos, setUserPhotos] = useState([])
 
 
-  function handleNewPhoto(photoObj){
-    console.log("New Obj", photoObj)
-    const newTrips = [...allTrips, photoObj]
-    setTrips(newTrips)
-    // console.log(photoObj)
-  }
 
   function handleMorePhotos() {
     setIndex((photoIndex) => (photoIndex + 4) % allTrips.length)
@@ -41,6 +38,7 @@ function App() {
     .then((destArr) => setDestinations(destArr))
   }, [])
 
+
   useEffect(() => {
     // fake auth
     fetch("http://localhost:3000/users/1")
@@ -52,6 +50,15 @@ function App() {
       console.log(user.getPhotos)
       })
     }, [])
+
+
+   function handleNewPhoto(photoObj){
+      console.log("New Obj", photoObj)
+      const newTrips = [...userPhotos, photoObj]
+      setUserPhotos(newTrips)
+      // console.log(photoObj)
+    }
+
 
   function deletePicture(id){
     console.log("Delete Picture", id)
@@ -82,8 +89,6 @@ function App() {
   const displayedPhotos = allTrips.filter((trip) => 
     trip.location.toLowerCase().includes(search.toLowerCase())).slice(photoIndex, photoIndex + 8)
 
-   
-
   return (
     <div className="App">
       {/* <NavBar user={user} destinations={destinations} search={search} setSearch={setSearch} handleNewPhoto={handleNewPhoto}/> */}
@@ -94,11 +99,11 @@ function App() {
           <PhotoList patchLikes={editLikes} removePic={deletePicture} allTrips={displayedPhotos} handleMorePhotos={handleMorePhotos}/>
         </Route>
         <Route exact path="/users/1">
-            <User photos={userPhotos} removePic={deletePicture}/>
+            <User photos={userPhotos} removePic={deletePicture} />
         </Route>
-        {/* <Route exact path="/add">
-          <CreatePhotoFrom />
-        </Route> */}
+        <Route exact path="/photos/:id">
+            <Photo trip={allTrips}/>
+        </Route>
         <Route path="*">
           <h1>404 not found</h1>
         </Route>

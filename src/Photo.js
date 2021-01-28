@@ -1,6 +1,7 @@
 import React, {useState} from 'react' 
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import { Link } from "react-router-dom"
 
 
 function Photo ({patchLikes, trip, removePic}){
@@ -47,7 +48,6 @@ function Photo ({patchLikes, trip, removePic}){
                     {description}
                     </Card.Text>
                     <Button className="button" variant="primary" onClick={addLike}>Likes: {totalLikes}</Button>
-                    {/* <Button className="button" variant="primary" onClick={deletePic}>Delete Pic</Button> */}
                 </Card.Body>
             </Card>     
         </div>
