@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
 
-
 function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
 
     const [loggedIn, setLoggedIn] = useState(false)
@@ -15,9 +14,8 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
     const [searchBtn, setSearchBtn] = useState(false)
     const [createBtn, setCreateBtn] = useState(false)
 
-
     function toggleMessage() {
-        if(name !== "lana@internet.net"){
+        if(name !== "nydia.baumbach@connelly-fahey.biz"){
             return alert('Your Email does not exist')
         }
         else{
@@ -35,7 +33,7 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
     
     function handleSubmit(e){
         e.preventDefault()
-        if(name !== "lana@internet.net" ){
+        if(name !== "nydia.baumbach@connelly-fahey.biz" ){
            return alert('Your Email does not exist')
         }
         else{
@@ -88,9 +86,6 @@ function NavBar({search, setSearch, handleNewPhoto, destinations, user}){
         {createBtn ? (
         <CreatePhotoForm handleNewPhoto={handleNewPhoto} destinations={destinations} user={user}/>
         ) : null }
-
-        
-        
             {/* <form onSubmit={handleSubmit}>
                 <input type="text" name="username" placeholder="Please Type Your Username" value={name} onChange={e => setName(e.target.value)}></input>
                 <input type="password" name="password" placeholder="Please Type Your Password" value={password} onChange={e => setPassword(e.target.value)}></input>

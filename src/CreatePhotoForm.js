@@ -24,7 +24,7 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
             description,
             date, 
             likes,
-            user_id: 17,
+            user_id: 1,
             destination_id: parseInt(selected)
         }
 
@@ -40,7 +40,7 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
         })
         .then(response => response.json())
         .then(photoObj => handleNewPhoto(photoObj))
-
+        console.log("POST Obj", photoObj)
         setDate("")
         setDescription("")
         setLocation("")
@@ -67,6 +67,5 @@ function CreatePhotoFrom ({handleNewPhoto, destinations, user}){
     </div>
     )
 }
-
 
 export default CreatePhotoFrom

@@ -7,10 +7,7 @@ import { Switch, Route } from "react-router-dom";
 import CreatePhotoFrom from './CreatePhotoForm';
 import Photo from './Photo.js'
 
-
-
 function App() {
-
   const [allTrips, setTrips] = useState([])
   const [search, setSearch] = useState("")
   const [page, setPage] = useState("/")
@@ -18,8 +15,6 @@ function App() {
   const [destinations, setDestinations] = useState([])
   const [user, setCurrentUser] = useState(null)
   const [userPhotos, setUserPhotos] = useState([])
-
-
 
   function handleMorePhotos() {
     setIndex((photoIndex) => (photoIndex + 4) % allTrips.length)
@@ -31,13 +26,11 @@ function App() {
     .then((photosArr) => setTrips(photosArr))
   }, [])
 
-
   useEffect(() => {
     fetch(`http://localhost:3000/destinations`)
     .then((r) => r.json())
     .then((destArr) => setDestinations(destArr))
   }, [])
-
 
   useEffect(() => {
     // fake auth
@@ -51,14 +44,12 @@ function App() {
       })
     }, [])
 
-
    function handleNewPhoto(photoObj){
       console.log("New Obj", photoObj)
       const newTrips = [...userPhotos, photoObj]
       setUserPhotos(newTrips)
-      // console.log(photoObj)
+      console.log("Updated Trips", newTrips)
     }
-
 
   function deletePicture(id){
     console.log("Delete Picture", id)

@@ -37,8 +37,6 @@ function UserPhotos({photo, removePic}){
         </Card> 
     </div>
     )
-
 }
-
 
 export default UserPhotos
